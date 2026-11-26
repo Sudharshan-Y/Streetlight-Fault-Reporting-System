@@ -1,23 +1,31 @@
 <div align="center">
 
-<!-- Animated Typing SVG Banner -->
+<!-- Animated Waving & Glowing Header Banner -->
 <a href="https://vercel.app">
-  <img src="https://demolab.com" alt="LuminaTrack Animated Banner" />
+  <img src="https://vercel.app" width="100%" alt="LuminaTrack Header" />
 </a>
 
-<p align="center">
-  <strong>A civic streetlight fault reporting & grievance management platform with guarded workflows, photo proof verification, and built-in CIA security.</strong>
-</p>
+<!-- Animated Multi-Line Typing Banner -->
+<a href="https://vercel.app">
+  <img src="https://demolab.com⚡+60-Second+Citizen+Streetlight+Fault+Reporting;🛡️+Guarded+5-Step+Workflow+%26+CIA+Security+Built-In;📊+Real-Time+SLA+Tracking%2C+Photo+Proof+%26+Live+Analytics" alt="Animated Feature Ticker" />
+</a>
 
-<!-- Live Status & Tech Stack Badges -->
+<br/>
+
+<!-- Prominent Live Demo Launch Button -->
+<a href="https://vercel.app">
+  <img src="https://shields.io🚀_LAUNCH_LIVE_DEMO-streetlight--fault--reporting--system--seven.vercel.app-FACC15?style=for-the-badge&labelColor=0F172A" alt="Launch Live Demo" />
+</a>
+
+<br/><br/>
+
+<!-- Tech Stack Badges -->
 <p align="center">
-  <a href="https://vercel.app">
-    <img src="https://shields.io" alt="Live Demo" />
-  </a>
-  <img src="https://shields.io" alt="Next.js" />
-  <img src="https://shields.io" alt="TypeScript" />
-  <img src="https://shields.io" alt="Tailwind CSS" />
-  <img src="https://shields.io" alt="Drizzle ORM" />
+  <img src="https://shields.ioNext.js-App_Router-0F172A?style=flat-square&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://shields.ioTypeScript-Strict-1E293B?style=flat-square&logo=typescript&logoColor=38BDF8" alt="TypeScript" />
+  <img src="https://shields.ioTailwind_CSS-Motion_UI-0F172A?style=flat-square&logo=tailwind-css&logoColor=38BDF8" alt="Tailwind CSS" />
+  <img src="https://shields.ioDrizzle_ORM-Schema_Ready-1E293B?style=flat-square&logo=drizzle&logoColor=C5F74F" alt="Drizzle ORM" />
+  <img src="https://shields.ioDeployed_on-Vercel-000000?style=flat-square&logo=vercel&logoColor=FACC15" alt="Vercel" />
 </p>
 
 <!-- Animated Glowing Pulse Divider -->
@@ -27,145 +35,148 @@
 
 ## ✨ Overview
 
-**LuminaTrack (`PRJ-118`)** bridges the gap between citizens and municipal maintenance crews. Citizens can report dark or malfunctioning streetlights in **under 60 seconds without creating an account**, attach photo evidence, and receive an instant tracking ID with an SLA countdown. Meanwhile, the municipal Control Room triages tickets by ward and department through a **state-guarded workflow** that prevents unauthorized status jumps.
+**LuminaTrack (`PRJ-118`)** is a civic streetlight fault reporting and municipal grievance management platform built for speed, transparency, and verifiable resolution. Citizens report dark or malfunctioning streetlights in **under 60 seconds with zero login required**, attach before-photo proof, and receive an instant tracking ID with an SLA countdown—while the Control Room triages tickets across **12 wards, 4 zones, and 5 departments** through a **state-guarded workflow**.
 
-<div align="center">
-
-### 🌐 Experience LuminaTrack Live
-[![Launch Live App](https://shields.io🚀_LAUNCH_LIVE_DEMO-streetlight--fault--reporting--system--seven.vercel.app-FACC15?style=for-the-badge&labelColor=0F172A)](https://vercel.app)
-
-*No login required to file or track a fault • Use Control Room demo access on `/dashboard` to test guarded triage*
-
-</div>
+🌐 **Live Deployment:** [https://vercel.app](https://vercel.app)
 
 ---
 
-## 🎬 2-Minute Live Demo Walkthrough
+## 🎬 Live Demo Walkthrough (2-Minute Evaluation Flow)
 
-Test the full end-to-end grievance lifecycle directly on the [live deployment](https://vercel.app):
+Test the complete end-to-end grievance lifecycle directly on the [live site](https://vercel.app):
 
-1. **Report a Fault (`/report`)** — Select a Ward & Zone, enter a Pole ID, describe the fault, upload/attach before-photo proof, and submit to generate an instant **Ticket ID** and **SLA deadline**.
-2. **Verify PII Masking (`/`)** — Return to the home page to see your ticket appear on the **Live Public Feed** with personal contact details automatically redacted.
-3. **Triage in Control Room (`/dashboard`)** — Sign in using the built-in demo credentials to verify priority, assign a crew (Electrical, Maintenance, Safety, or Contractor), upload after-photo proof, and advance the status through guarded transitions.
-4. **Track & Close (`/track`)** — Enter your Ticket ID to inspect the checksum-verified audit timeline, view before/after photo proof, and submit a closure rating (or reopen if the fault persists).
-5. **Inspect Analytics & Export (`/analytics`)** — Review ward-level SLA metrics and download a **1-click JSON backup or CSV report**.
+1. **Report a Fault ([`/report`](https://vercel.appreport))** — Choose a Ward & Zone, enter a Pole ID, select an issue category, attach before-photo evidence, and submit to generate an instant **Ticket ID** and **SLA deadline**.
+2. **Verify PII Masking ([`/`](https://vercel.app))** — Return to the home dashboard to watch live KPI counters update and verify that citizen phone/email details are automatically redacted on the public feed.
+3. **Control Room Triage ([`/dashboard`](https://vercel.appdashboard))** — Sign in with the built-in demo credentials, verify priority, assign a maintenance crew, upload after-photo proof, and advance status through guarded transitions.
+4. **Track & Close ([`/track`](https://vercel.apptrack))** — Search your Ticket ID to inspect the checksum-verified audit timeline, compare before/after photos, and submit a closure rating (or reopen if the fault returns).
+5. **Analytics & Export ([`/analytics`](https://vercel.appanalytics))** — Inspect ward-level SLA compliance charts and download a **1-click JSON backup or CSV export**.
 
 ---
 
-## 🔄 5-Step Guarded Grievance Workflow
+## 🔄 Guarded State Machine & Workflow (`src/lib/lumina.ts`)
 
-LuminaTrack enforces strict state transitions from initial citizen report to verified closure:
+LuminaTrack enforces strict state transitions and blocks illegal shortcuts (such as jumping directly from `Submitted` to `Resolved` without crew dispatch and after-photo proof):
+
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    [*] --> Submitted: 📝 Citizen Submits (/report)\n[Ward + Pole ID + Before-Photo]
+
+    Submitted --> Triaged: 🧠 Smart Triage (/dashboard)\n[Auto-Priority + Dept + SLA Timer]
+    Triaged --> Assigned: 👷 Crew Dispatched\n[Electrical / Safety / Contractor]
+    Assigned --> Resolved: 📸 Fix + After-Photo Proof\n[Mandatory Image Attached]
+    Resolved --> Closed: ✅ Citizen Confirms & Rates (/track)
+
+    Closed --> Reopened: 🔄 Fault Returns\n[Citizen Reopens Ticket]
+    Reopened --> Triaged: 🧠 Re-Triage & New SLA
+
+    state "🚫 Blocked Illegal Jumps" as Blocked {
+        Submitted --> Resolved: ❌ Rejected by State Guard
+        Triaged --> Resolved: ❌ Rejected (No Crew/Proof)
+    }
+
+    classDef gold fill:#0f172a,stroke:#facc15,stroke-width:2px,color:#f8fafc
+    classDef sky fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc
+    classDef green fill:#0f172a,stroke:#22c55e,stroke-width:2px,color:#f8fafc
+    classDef red fill:#1e1b1e,stroke:#ef4444,stroke-width:2px,color:#fca5a5
+
+    class Submitted,Reopened gold
+    class Triaged,Assigned sky
+    class Resolved,Closed green
+    class Blocked red
+```
+
+---
+
+## 🧠 Smart Triage & SLA Priority Decision Matrix
+
+Keywords and fault severity automatically classify incoming reports into SLA windows (12h–72h) and route them to the responsible municipal department:
 
 ```mermaid
 flowchart LR
-    A["📝 01. Citizen Reports<br/>Ward, Pole ID & Before-Photo"] --> B["🧠 02. Smart Triage<br/>Auto-Priority, Dept & SLA"]
-    B --> C["👷 03. Crew Assigned<br/>Electrical / Safety / Contractor"]
-    C --> D["📸 04. Fix + Proof<br/>Mandatory After-Photo Uploaded"]
-    D --> E["✅ 05. Citizen Closes<br/>Rating, Feedback or Reopen"]
+    Input["📝 Citizen Fault Report<br/>(12 Wards · 4 Zones)"] --> Engine{"🧠 Smart Triage Engine<br/>(Keyword & Severity Parser)"}
 
-    style A fill:#1e293b,stroke:#facc15,stroke-width:2px,color:#f8fafc
-    style B fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc
-    style C fill:#1e293b,stroke:#a855f7,stroke-width:2px,color:#f8fafc
-    style D fill:#1e293b,stroke:#f97316,stroke-width:2px,color:#f8fafc
-    style E fill:#1e293b,stroke:#22c55e,stroke-width:2px,color:#f8fafc
+    Engine -->|"Sparking / Exposed Wire / Fall Risk"| P1["🔴 Critical Priority<br/>SLA: 12 Hours<br/>Dept: Emergency Safety"]
+    Engine -->|"Dark Pole / Transformer / Feeder"| P2["🟠 High Priority<br/>SLA: 24 Hours<br/>Dept: Electrical Grid"]
+    Engine -->|"Flickering / Dim Lamp / Timer"| P3["🟡 Medium Priority<br/>SLA: 48 Hours<br/>Dept: Routine Maintenance"]
+    Engine -->|"Bent Arm / Cover Missing / Paint"| P4["🟢 Standard Priority<br/>SLA: 72 Hours<br/>Dept: Civil / Contractor"]
+
+    style Input fill:#0f172a,stroke:#facc15,stroke-width:2px,color:#f8fafc
+    style Engine fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc
+    style P1 fill:#2a1215,stroke:#ef4444,stroke-width:2px,color:#fecaca
+    style P2 fill:#2a1a12,stroke:#f97316,stroke-width:2px,color:#fed7aa
+    style P3 fill:#292512,stroke:#eab308,stroke-width:2px,color:#fef08a
+    style P4 fill:#122a1c,stroke:#22c55e,stroke-width:2px,color:#bbf7d0
 ```
 
 ---
 
-## 🚀 Key Features
+## 🔁 End-to-End Swimlane Sequence
 
-| Module | Route | Capabilities |
-| :--- | :--- | :--- |
-| **Landing & Live Feed** | `/` | Real-time KPI counters (tracked tickets, resolution rate, avg fix time, SLA compliance) + PII-masked live public feed. |
-| **60-Sec Fault Report** | `/report` | No-login submission with ward/zone tagging (12 wards, 4 zones), pole ID entry, issue categorization, and mandatory photo proof. |
-| **Ticket Tracker** | `/track` | Public lookup by Ticket ID showing live SLA deadline, guarded audit timeline, before/after photos, and citizen closure/reopen controls. |
-| **Control Room** | `/dashboard` | Role-gated operator workspace for smart triage, crew assignment across 5 departments, guarded status transitions, and proof uploads. |
-| **Public Analytics** | `/analytics` | Visual breakdown of ward performance, SLA adherence, department workload, and 1-click **JSON Backup & CSV Export**. |
-| **Docs & Viva Guide** | `/docs` | Built-in architectural documentation, security breakdown, and viva Q&A reference. |
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Citizen as 👤 Citizen (No Login)
+    participant App as ⚡ LuminaTrack Store & Guard<br/>(lumina.ts + store.tsx)
+    actor Operator as 🛡️ Control Room Operator<br/>(/dashboard)
 
----
+    Citizen->>App: Submit Fault (Ward, Pole ID, Issue, Before-Photo)
+    App->>App: Auto-classify Priority, Dept & SLA (12h–72h)
+    App->>App: Generate Ticket ID + Integrity Checksum
+    App-->>Citizen: Issue Ticket ID & Live SLA Countdown
+    App-->>Citizen: Publish to Live Feed (Phone/Email PII Masked)
 
-## 🛡️ CIA Triad Security Architecture
+    Operator->>App: Authenticate via Role Gate
+    Operator->>App: Verify Triage & Assign Crew (1 of 5 Depts)
+    App->>App: Validate Transition & Append Audit Log
 
-Security in **LuminaTrack** is engineered into the application state and workflow logic:
+    Operator->>App: Upload After-Photo Proof & Mark Resolved
+    alt Missing After-Photo or Skipped Step
+        App-->>Operator: 🚫 Block Illegal State Transition
+    else Valid Proof & Sequence
+        App->>App: Update Checksum & Stop SLA Clock
+        App-->>Citizen: Live Status Updated on /track
+    end
 
-* **🔒 Confidentiality**
-  * Role-gated access control for the Control Room (`/dashboard`).
-  * Automatic **PII masking** (phone numbers and emails redacted) on all public feeds and ticket lookups.
-  * Zero hardcoded production secrets in source code.
-* **✅ Integrity**
-  * **Guarded State Machine (`src/lib/lumina.ts`)**: Blocks illegal workflow jumps (e.g., jumping directly from `Submitted` to `Resolved` without crew assignment and after-photo proof).
-  * Immutable audit timeline entries and per-ticket integrity checksums.
-* **⚡ Availability**
-  * **100% Offline-First Resilience (`src/lib/store.tsx`)**: Powered by client-side `localStorage` persistence so reporting and triage work seamlessly even without an active database connection.
-  * Instant **JSON snapshot backup** and **CSV export** for zero data lock-in, paired with Drizzle ORM (`src/db/`) for PostgreSQL/SQLite scaling.
-
----
-
-## 🗂️ Project Structure
-
-```text
-streetlight-fault-reporting-system/
-├── drizzle.config.json          # Drizzle Kit database configuration
-├── next.config.ts               # Next.js configuration
-├── package.json                 # Project dependencies & scripts
-└── src/
-    ├── app/
-    │   ├── page.tsx             # Landing page, live KPIs & PII-masked feed
-    │   ├── layout.tsx           # Root layout & metadata
-    │   ├── globals.css          # Custom animations, transitions & theme tokens
-    │   ├── report/page.tsx      # 60-second citizen fault submission form
-    │   ├── track/page.tsx       # Public ticket tracking & citizen closure
-    │   ├── dashboard/page.tsx   # Role-gated Control Room & triage workflow
-    │   ├── analytics/page.tsx   # Ward/SLA analytics & CSV/JSON export
-    │   ├── docs/page.tsx        # System docs & viva Q&A
-    │   └── api/health/route.ts  # Health-check endpoint
-    ├── components/
-    │   ├── chrome.tsx           # Navigation shell, headers & layout chrome
-    │   ├── charts.tsx           # Interactive analytics & SLA visualizations
-    │   └── ui.tsx               # Reusable animated UI primitives
-    ├── db/
-    │   ├── index.ts             # Database client initialization
-    │   └── schema.ts            # Drizzle ORM schema definitions
-    └── lib/
-        ├── lumina.ts            # Core domain logic, SLA rules, checksums & state guards
-        └── store.tsx            # Offline-first React context & localStorage sync
+    Citizen->>App: Inspect Before/After Photos & Submit Rating
+    App->>App: Lock Ticket as Closed (Reopen Allowed if Needed)
 ```
 
 ---
 
-## 🛠️ Local Setup & Installation
+## 🏗️ System Architecture & CIA Triad Security Blueprint
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com<your-username>/streetlight-fault-reporting-system.git
-   cd streetlight-fault-reporting-system
-   ```
+```mermaid
+flowchart TB
+    subgraph Client ["🌐 Next.js App Router Frontend (Vercel Edge)"]
+        direction LR
+        P1["🏠 /<br/>Live KPIs &<br/>PII-Masked Feed"]
+        P2["🚨 /report<br/>60-Sec Fault<br/>Submission"]
+        P3["🔍 /track<br/>Audit Timeline &<br/>Citizen Closure"]
+        P4["🎛️ /dashboard<br/>Role-Gated<br/>Control Room"]
+        P5["📊 /analytics<br/>Ward SLA Charts &<br/>CSV/JSON Export"]
+    end
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+    subgraph Core ["⚙️ Core Engine & CIA Security Layer"]
+        direction LR
+        C1["🔒 Confidentiality<br/>• Role Gate Auth<br/>• PII Redaction<br/>• Zero Hardcoded Secrets"]
+        C2["✅ Integrity<br/>• Guarded Transitions<br/>• Immutable Audit Log<br/>• Per-Ticket Checksum"]
+        C3["⚡ Availability<br/>• Offline-First Store<br/>• 1-Click JSON Backup<br/>• CSV Export"]
+    end
 
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+    subgraph Storage ["💾 Persistence Layer"]
+        direction LR
+        S1[("🗄️ Browser localStorage\n(Zero-Backend Mode)")]
+        S2[("🐘 Drizzle ORM Schema\n(src/db/schema.ts)")]
+    end
 
-4. **Open in your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to explore the citizen portal and Control Room.
+    Client ==> Core
+    Core ==> S1
+    Core -.->|"Scale-Ready"| S2
 
----
-
-## 🎓 Project Credits
-
-* **Project ID:** `PRJ-118` — Public Service Grievance Systems
-* **Developer:** Sudharshan Y PDKV (`Reg: 411623149042`)
-* **Department:** Department of Cyber Security (Individual Project)
-
-<div align="center">
-
-<!-- Animated Waving Footer -->
-<img src="https://vercel.app" width="100%" alt="Animated Footer" />
-
-</div>
+    style Client fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc
+    style Core fill:#0f172a,stroke:#facc15,stroke-width:2px,color:#f8fafc
+    style Storage fill:#0f172a,stroke:#22c55e,stroke-width:2px,color:#f8fafc
+    style C1 fill:#1e293b,stroke:#38bdf8,color:#f8fafc
+    style C2 fill:#1e293b,stroke:#facc15,color:#f8fafc
